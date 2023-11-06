@@ -1,95 +1,61 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import {
+  VStack,
+  Box,
+  Flex,
+  Spacer,
+  Button,
+  LinkOverlay,
+  LinkBox,
+  Image,
+  useColorMode,
+} from "@chakra-ui/react";
+
+import { NavBar } from "../components/NavBar";
+import { ZOOMER_YELLOW } from "@/utils/colors";
+
+const Page = () => {
+  const { colorMode } = useColorMode();
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <VStack
+      spacing={4}
+      align="stretch"
+      p={4}
+      backgroundColor={
+        colorMode === "light" ? ZOOMER_YELLOW : "black"
+      }
+      textColor={colorMode === "light" ? "black" : ZOOMER_YELLOW}
+      minHeight={"640px"}
+    >
+      <NavBar />
+      <Flex>
+        <Spacer />
+        <Box width={{ base: "100%", md: "640px" }}>
+          <LinkBox>
+            <Button
+              width="100%"
+              backgroundColor={
+                colorMode === "light" ? "black" : ZOOMER_YELLOW
+              }
+              color={
+                colorMode === "light" ? ZOOMER_YELLOW : "black"
+              }
+              mt={4}
+            >
+              <LinkOverlay href={""} isExternal>
+                BUY ZOOMER
+              </LinkOverlay>
+            </Button>
+          </LinkBox>
+        </Box>
+        <Spacer />
+      </Flex>
+      <Flex>
+        <Spacer />
+      </Flex>
+    </VStack>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Page;
